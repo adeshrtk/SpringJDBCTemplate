@@ -41,6 +41,8 @@ public class MainApp {
 		
 		// delete a record based on id
 		System.out.println("---Delete Record with ID = 2");
-		//studentJDBCTemplate.delete(3);		
+		//studentJDBCTemplate.delete(3);	
+		
+		//Test Commit
 	}
 }
