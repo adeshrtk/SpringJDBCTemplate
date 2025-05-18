@@ -18,4 +18,6 @@ public interface StudentDAO {
 	
 	public void delete(Integer id);
 	
+	public Student getStudentByStorProc(Integer id);
+	
 }

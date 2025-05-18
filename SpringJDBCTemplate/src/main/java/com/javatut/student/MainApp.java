@@ -43,6 +43,11 @@ public class MainApp {
 		System.out.println("---Delete Record with ID = 2");
 		//studentJDBCTemplate.delete(3);	
 		
-		//Test Commit
+		// get the student based on id and print its details
+		System.out.println("---Listening Record with ID - 1 with Stored Proc---");
+		Student student1 = studentJDBCTemplate.getStudentByStorProc(1);
+		System.out.println("ID: " + student1.getId());
+		System.out.println(", Name: " + student1.getName());
+		System.out.println(", Age: " + student1.getAge());
 	}
 }
