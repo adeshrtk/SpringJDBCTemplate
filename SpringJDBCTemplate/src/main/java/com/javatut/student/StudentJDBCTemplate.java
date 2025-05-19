@@ -99,6 +99,22 @@ public class StudentJDBCTemplate implements StudentDAO {
 
 	@Override
 	public Student getStudentByFunc(Integer id) {
+		
+		/*
+		Create function dbo.getStudentName(@Id int)
+		Returns Varchar(50)
+		As
+		Begin
+			Declare @name varchar(50)
+			Select @name = name from Student Where ID = @Id
+			Return @name
+		End
+		Go
+
+		select dbo.getStudentName(1)
+		*/
+		
+		
 		SimpleJdbcCall jdbcCall = new SimpleJdbcCall(dataSource).withFunctionName("getStudentName");
 		SqlParameterSource in = new MapSqlParameterSource().addValue("Id", id);
 		
