@@ -40,7 +40,7 @@ public class MainApp {
 		System.out.println(", Age: " + student.getAge());
 		
 		// delete a record based on id
-		System.out.println("---Delete Record with ID = 2");
+		//System.out.println("---Delete Record with ID = 2");
 		//studentJDBCTemplate.delete(3);	
 		
 		// get the student based on id and print its details
@@ -49,5 +49,11 @@ public class MainApp {
 		System.out.println("ID: " + student1.getId());
 		System.out.println(", Name: " + student1.getName());
 		System.out.println(", Age: " + student1.getAge());
+		
+		//get the student based on Id and print its details
+		System.out.println("---Listening Record with ID - 1 with Function");
+		Student student2 = studentJDBCTemplate.getStudentByFunc(1);
+		System.out.println("ID: " + student2.getId());
+		System.out.println(", Name: " + student2.getName());
 	}
 }

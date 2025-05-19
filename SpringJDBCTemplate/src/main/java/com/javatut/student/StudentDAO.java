@@ -20,4 +20,6 @@ public interface StudentDAO {
 	
 	public Student getStudentByStorProc(Integer id);
 	
+	public Student getStudentByFunc(Integer id);
+	
 }

@@ -97,4 +97,17 @@ public class StudentJDBCTemplate implements StudentDAO {
 		return student;
 	}
 
+	@Override
+	public Student getStudentByFunc(Integer id) {
+		SimpleJdbcCall jdbcCall = new SimpleJdbcCall(dataSource).withFunctionName("getStudentName");
+		SqlParameterSource in = new MapSqlParameterSource().addValue("Id", id);
+		
+		String name = jdbcCall.executeFunction(String.class, in);
+		
+		Student student = new Student();
+		student.setId(id);
+		student.setName(name);
+		return student;
+	}
+
 }
