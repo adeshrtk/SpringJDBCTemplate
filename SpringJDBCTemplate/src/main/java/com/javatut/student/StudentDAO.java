@@ -22,4 +22,6 @@ public interface StudentDAO {
 	
 	public Student getStudentByFunc(Integer id);
 	
+	public void batchUpdate(final List<Student> students);
+	
 }

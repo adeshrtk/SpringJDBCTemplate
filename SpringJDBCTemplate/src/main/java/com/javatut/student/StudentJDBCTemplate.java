@@ -1,11 +1,14 @@
 package com.javatut.student;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -124,6 +127,26 @@ public class StudentJDBCTemplate implements StudentDAO {
 		student.setId(id);
 		student.setName(name);
 		return student;
+	}
+
+	@Override
+	public void batchUpdate(List<Student> students) {
+		String SQL = "Update Student Set age = ? Where id = ?";
+		int[] updateCounts = jdbcTemplateObject.batchUpdate(SQL, new BatchPreparedStatementSetter() {
+			
+			@Override
+			public void setValues(PreparedStatement ps, int i) throws SQLException {
+				ps.setInt(1, students.get(i).getAge());
+				ps.setInt(2, students.get(i).getId());				
+			}
+			
+			@Override
+			public int getBatchSize() {
+				return students.size();
+			}
+		});
+		System.out.println("Records Updated");
+		
 	}
 
 }

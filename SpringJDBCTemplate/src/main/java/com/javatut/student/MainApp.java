@@ -1,5 +1,6 @@
 package com.javatut.student;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -55,5 +56,25 @@ public class MainApp {
 		Student student2 = studentJDBCTemplate.getStudentByFunc(1);
 		System.out.println("ID: " + student2.getId());
 		System.out.println(", Name: " + student2.getName());
+		
+		// batch update to students
+		Student updStudent1 = new Student();
+		updStudent1.setId(1);
+		updStudent1.setAge(15);
+		
+		
+		Student updStudent2 = new Student();
+		updStudent2.setId(3);
+		updStudent2.setAge(25);
+		
+		List<Student> studentsList = new ArrayList<Student>();
+		studentsList.add(updStudent1);
+		studentsList.add(updStudent2);
+		
+		studentJDBCTemplate.batchUpdate(studentsList);
+		System.out.println("Updated Student");
+		
+		
+		
 	}
 }
