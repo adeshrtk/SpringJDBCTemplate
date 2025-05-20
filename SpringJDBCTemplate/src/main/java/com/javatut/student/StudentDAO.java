@@ -24,4 +24,6 @@ public interface StudentDAO {
 	
 	public void batchUpdate(final List<Student> students);
 	
+	public void objectBatchUpdate(final List<Student> students);
+	
 }
