@@ -31,8 +31,11 @@ public class MainApp {
 		// get the student based on id and print its details
 		getStudentByStorProc(studentJDBCTemplate);
 		
-		//get the student based on Id and print its details
-		batchUpdate(studentJDBCTemplate);		
+		// update the student based on Id and print its details
+		batchUpdate(studentJDBCTemplate);	
+		
+		// update the student based on ID and print its details
+		objectBatchUpdate(studentJDBCTemplate);
 		
 	}
 	
@@ -103,4 +106,30 @@ public class MainApp {
 		studentJDBCTemplate.batchUpdate(studentsList);
 		System.out.println("Updated Student");
 	}
+	
+	public static void objectBatchUpdate(StudentJDBCTemplate studentJDBCTemplate) {
+		System.out.println("---Listening Record with ID - 1 with Function");
+		Student student2 = studentJDBCTemplate.getStudentByFunc(1);
+		System.out.println("ID: " + student2.getId());
+		System.out.println(", Name: " + student2.getName());
+		
+		// batch update to students
+		Student updStudent1 = new Student();
+		updStudent1.setId(4);
+		updStudent1.setAge(15);
+		
+		
+		Student updStudent2 = new Student();
+		updStudent2.setId(5);
+		updStudent2.setAge(25);
+		
+		List<Student> studentsList = new ArrayList<Student>();
+		studentsList.add(updStudent1);
+		studentsList.add(updStudent2);
+		
+		studentJDBCTemplate.objectBatchUpdate(studentsList);
+		System.out.println("Updated Student");
+	}
+	
+	
 }
