@@ -6,20 +6,11 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import com.javatut.db.JDBCDBConfig;
 
 public class MainApp {
 
-	public static void main(String[] args) {
-		//Get Template from Beans.xml
-		//ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		//StudentJDBCTemplate studentJDBCTemplate = (StudentJDBCTemplate) context.getBean("studentJDBCTemplate");
-		
-		//Get Template from Config class
-		//ApplicationContext context = new AnnotationConfigApplicationContext(JDBCDBConfig.class);
-		//StudentJDBCTemplate studentJDBCTemplate =  context.getBean(StudentJDBCTemplate.class);	
+	public static void main(String[] args) {	
 		
 		StudentJDBCTemplate studentJDBCTemplate = getJdbcTemplateFromConfig();
 		
@@ -49,12 +40,14 @@ public class MainApp {
 		
 	}
 	
+	//Get Template from Beans.xml
 	public static StudentJDBCTemplate getJdbcTemplateFromBeans() {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		StudentJDBCTemplate studentJDBCTemplate = (StudentJDBCTemplate) context.getBean("studentJDBCTemplate");
 		return studentJDBCTemplate;
 	}
 	
+	//Get Template from Config class
 	public static StudentJDBCTemplate getJdbcTemplateFromConfig() {
 		ApplicationContext context = new AnnotationConfigApplicationContext(JDBCDBConfig.class);
 		StudentJDBCTemplate studentJDBCTemplate =  context.getBean(StudentJDBCTemplate.class);	
