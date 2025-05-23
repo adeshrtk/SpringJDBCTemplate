@@ -4,14 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.javatut.db.JDBCDBConfig;
 
 public class MainApp {
 
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		//Get Template from Beans.xml
+		//ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		//StudentJDBCTemplate studentJDBCTemplate = (StudentJDBCTemplate) context.getBean("studentJDBCTemplate");
 		
-		StudentJDBCTemplate studentJDBCTemplate = (StudentJDBCTemplate) context.getBean("studentJDBCTemplate");
+		//Get Template from Config class
+		//ApplicationContext context = new AnnotationConfigApplicationContext(JDBCDBConfig.class);
+		//StudentJDBCTemplate studentJDBCTemplate =  context.getBean(StudentJDBCTemplate.class);	
+		
+		StudentJDBCTemplate studentJDBCTemplate = getJdbcTemplateFromConfig();
 		
 		// create and persist students
 		createStudent(studentJDBCTemplate);
@@ -37,6 +47,18 @@ public class MainApp {
 		// update the student based on ID and print its details
 		objectBatchUpdate(studentJDBCTemplate);
 		
+	}
+	
+	public static StudentJDBCTemplate getJdbcTemplateFromBeans() {
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		StudentJDBCTemplate studentJDBCTemplate = (StudentJDBCTemplate) context.getBean("studentJDBCTemplate");
+		return studentJDBCTemplate;
+	}
+	
+	public static StudentJDBCTemplate getJdbcTemplateFromConfig() {
+		ApplicationContext context = new AnnotationConfigApplicationContext(JDBCDBConfig.class);
+		StudentJDBCTemplate studentJDBCTemplate =  context.getBean(StudentJDBCTemplate.class);	
+		return studentJDBCTemplate;
 	}
 	
 	public static void createStudent(StudentJDBCTemplate studentJDBCTemplate) {
